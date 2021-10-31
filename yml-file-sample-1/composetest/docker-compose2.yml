@@ -1,0 +1,13 @@
+version: "3.1" #
+service:
+servicename:
+image:
+command:
+environmnt:
+volume:
+servicename2:
+dependson:
+
+volumes:
+
+networks:

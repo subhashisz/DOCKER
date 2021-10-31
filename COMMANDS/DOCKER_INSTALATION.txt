@@ -1,0 +1,27 @@
+INSTALL CURL
+
+*********************
+1. $ sudo apt-get update
+2. $ sudo snap install curl-ijohnson
+
+ DOCKER INSTALLATION LINUX MINT
+**********************************************
+To install DOCKER : https://get.docker.com/
+
+# This script is meant for quick & easy install via:
+# $ curl -fsSL https://get.docker.com -o get-docker.sh
+# $ sh get-docker.sh
+
+DOCKER MACHINE INSTALL
+******************************
+
+1. sudo -i // Enables interactive mode
+2. curl -L https://github.com/docker/machine/releases/download/v0.16.2/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine && chmod +x /tmp/docker-machine && sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+
+DOCKER COMPOSE INSTALL
+***********************************
+
+1. sudo -i // Enables interactive mode. 
+2. curl -L https://github.com/docker/compose/releases/download/1.25.1-rc1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+

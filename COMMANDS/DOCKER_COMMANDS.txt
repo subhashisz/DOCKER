@@ -1,0 +1,123 @@
+DOCKER COMMANDS
+****************
+$ docker version / docker --version
+$ docker tab tab
+$ docker image tab tab
+$ docker image ls tab tab
+$ docker container run (new) / docker run (old)
+$ docker info
+$ docker container ls
+$ docker container ls -a
+$ docker container stop ls container_id
+$ docker ps -a // old way
+$ docker container top container_name// process list in one container
+$ docker container logs container_name  // docker container logs mynginx1 
+$ docker container inspect // details of one container config
+$ docker container stats // performance stats for all container
+$ docker container run -it //starts a new container interactively
+$ docker container exec -it //run additional command in exiting container
+$ docker container start -ai ubuntu
+$ docker network ls
+$ docker network create my_net_app
+$ docker network inspect
+$ docker network create --driver
+$ docker network connect
+$ docker network disconnect
+
+$ docker container run --rm -it centos:7 bash
+$ yum update curl
+
+$ docker container run --rm -it ubuntu:14.04 bash
+$ apt-get update && apt-get install -y curl 
+
+
+************************************************************************************************        
+
+                              DOCKER COMPOSE
+************************************************************************************************
+
+
+
+
+************************************************************************************************        
+
+                              SWARM
+************************************************************************************************
+
+$ docker service create
+
+$ docker service update
+
+
+
+$ ps aux // lists all the processes running in Linux
+$ ps aux | grep process_name  // to see only one process
+
+
+Running NGINX Open Source in a Docker Container
+
+You can create an NGINX instance in a Docker container using the NGINX Open Source image from the Docker Hub.
+
+    Launch an instance of NGINX running in a container and using the default NGINX configuration with the following command:
+
+    $ docker run --name mynginx1 -p 80:80 -d nginx
+
+    where: mynginx1 is the name of the created container based on the NGINX image the -d option specifies that the container runs in detached mode: the container continues to run until stopped but does not respond to commands run on the command line.the -p option tells Docker to map the ports exposed in the container by the NGINX image (port 80) to the specified port on the Docker host. The first parameter specifies the port in the Docker host, the second parameter is mapped to the port exposed in the container
+
+    The command returns the long form of the container ID: fcd1fb01b14557c7c9d991238f2558ae2704d129cf9fb97bb4fadf673a58580d. This form of ID is used in 
+    the name of log files.
+
+    Verify that the container was created and is running with the docker ps command:
+
+ 
+
+$  docker container run --publish 80:80 nginx
+
+$ docker run --name docker-nginx -p 80:80 -d nginx
+
+$ sudo docker ps
+$ sudo docker stop docker-nginx
+$ sudo docker rm docker-nginx 
+**********************************************************
+$ curl localhost
+$ curl localhost:8080
+
+$ docker container run --name mysql_db -p 3306:3306 -d -e MYSQL_RANDOM_ROOT_PASSWORD=yes  mysql
+
+$ docker container run --name webserver -d -p 8080:80 httpd
+
+$ curl localhost:8080 --> apache
+
+$ curl localhost --> nginx
+
+ 
+
+$ apt-get update && apt-get install -y procps // to install ps command in mysql
+
+ 
+
+$ docker container exec -it mysql_db bash
+
+$ docker container exec -it ubuntu bash
+
+$ docker container start -ai ubuntu
+
+$ docker container run -it alpine sh
+
+$ docker container inspect --format "{{.NetworkSettings.IPAddress }}" webhost
+
+$ docker  network ls
+
+$ docker network inspect
+
+$ docker network create --driver  // docker network create my_network
+
+$ docker network connect
+
+$ docker network disconnect
+
+$ docker network ls -f  driver=bridge
+
+// nginx latest not supporting ping command so go for alpine-nginx
+
+$ docker container run -d --name my_nginx --network my_app_network nginx

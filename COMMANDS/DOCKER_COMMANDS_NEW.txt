@@ -1,0 +1,247 @@
+********************************************************************************************************************************************************
+Docker GUI 
+********************************************************************************************************************************************************
+sudo usermod -aG docker subhhashis => Adding to user group so that it dont ask for sudo
+
+*************
+DOCKER GUI:GOOD
+*************
+Step 1: sudo docker volume create portainer_data
+
+Step 2: sudo docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+
+Step 3: open browser and hit the url : http://localhost:9000/
+
+********************************************************************************************************************************************************
+
+docker container run --publish 80:80 nginx                         => pulls nginx from docker and runs inside docker container
+docker container run --publish 80:80 --detach nginx                => tells the docker to run nginx in background and gives a random name
+docker container run --publish 80:80 --detach --name webhost nginx => gives name to the container and runs detached to the container
+
+********************************************************************************************************************************************************
+
+docker container creating images
+******************************************************************************************************************************************************
+
+docker container run --publish 80:80 --detach --name webhost nginx  => Default values which I changed down as ports are used by others(Tomcat 8080)
+docker container run -d --name webserver -p 8080:80 httpd           => Default values which I changed down as ports are used by others
+
+
+docker container run --publish 90:90 --detach --name webhost nginx
+
+docker container run -d --name webserver -p 5050:50 httpd
+
+docker container run -d -p 3306:3306 --name db -e MYSQL_RANDOM_ROOT_PASSWORD=yes MYSQL_RANDOM_ROOT_PASSWORD
+docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=hello -e MYSQL_DATABASE=hello -e MYSQL_USER=hello -e MYSQL_PASSWORD=hello -d mysql:5.6
+
+docker container run -it --name ubuntu ubuntu
+
+docker run -it --rm -p 8888:8080 tomcat:9.0
+
+docker run -it --rm -d -p 8888:8888 tomcat:9.0
+
+
+******************************************************************************************************************************************************
+
+docker container logs and details
+********************************************************************************************************************************************************
+docker container logs webhost => displays logs of webhost
+
+docker container run webhost       => runs webhost in the container
+docker container run webhost mongo => runs images in the container (webhost and mongo)
+
+docker container top         => process list in one container
+docker container top webhost
+
+docker container inspect     => Details of one container config
+docker container inspect webhost
+
+docker container stats       => Performance stats of all containers
+docker container stats webhost
+
+docker container rm container names    => removes containers
+docker container rm -f container names => force remove, removes running container also
+
+********************************************************************************************************************************************************
+
+docker container Getting shell inside (25)
+********************************************************************************************************************************************************
+docker container run -it    => runs container in interactive mode
+docker container exec -it
+
+docker container run -it --name proxy nginx bash => creates nginx server image with bash and root previllage, but when exit container will stop the image.We can not start the container by docker container start container name, insted please follow the below command.
+
+docker container start -ai dd24 => to start the container image again with bash
+
+docker container run -it --name ubuntu ubuntu => creates a ubuntu image
+
+docker container start -ai ubuntu             => to start the container image again with bash
+ 
+docker container exec -it mysql bash          => to see bash in a running container, helps in debugging on running containers.
+
+NOTE: docker container exec => runs an additional process on an existing running container, its not going to affect the root process. 
+
+
+docker container run -it alpine sh  
+
+NOTE: alpine doesnot have a bash so sh
+
+
+ls -al => gives processes running under an image
+ps aux => 
+
+
+
+********************************************************************************************************************************************************
+
+docker container NETWORK
+********************************************************************************************************************************************************
+
+
+
+********************************************************************************************************************************************************
+
+docker container NETWORK CLI MANAGEMENT
+********************************************************************************************************************************************************
+
+docker network ls
+
+docker network inspect 
+
+docker network inspect bridge
+
+docker network create --driver
+
+docker network connect
+
+docker network disconnect
+
+docker network create my-app-net 
+
+docker container run -d -name new_nginx 
+
+Adding image to a netwok
+***************************
+
+docker container run -d --name new-nginx --network my-app-net  nginx
+
+docker container run -d --name my-nginx --network my-app-net  nginx
+
+docker container run -d --name my-nginx1 --network my-app-net nginx:alpine
+
+docker container run -d --name my-nginx2 --network my-app-net nginx:alpine
+
+docker container connect new-network old-network  
+
+********************************************************************************************************************************************************
+
+docker container NETWORK DNS
+********************************************************************************************************************************************************
+
+docker container exec -it new-nginx ping my-nginx   // for pinging one container from another container
+
+docker container exec -it my-nginx ping new-nginx 
+
+NOTE:
+1. Default bridge network does not a default DNS network built in 
+2. Containers should not relay on ip address to talking to each other(inter communication) , insted they can use name.
+
+if ping not found Error : OCI runtime exec failed: exec failed: container_linux.go:380: starting container process caused: exec: "ping": executable file not found in $PATH: unknown. Then
+
+docker container exec -it my-nginx bash
+apt update
+apt install iputils-ping
+exit
+
+
+create a new image inside container 
+docker container run --rm -it -d centos:7 bash
+
+docker container --network -alias
+
+docker network create dude
+docker container run -d --net  dude --net-alias search elasticsearch:2
+
+
+********************************************************************************************************************************************************
+DOCKER IMAGES
+********************************************************************************************************************************************************
+
+docker history image-name  => shows the changes(layers) to that particular image.
+
+docker image inspect image-name  => gives the metadata
+
+
+docker image tag nginx subhashisz/nginx   => to tag an existing image 
+docker image push subhashisz/nginx:latest        => to push image to your account
+
+docker image tag nginx subhashisz/nginx:1.05
+
+docker image push subhashisz/tomcat:latest
+
+docker login -u subhashisz -p $sara5sub docker.io => not working
+
+
+docker image tag httpd subhashisz/httpd:version1.0
+
+docker image tag nginx subhashisz/nginx:latest
+
+docker login
+docker logout
+
+docker top         =>
+docker trust       =>
+docker unpause     =>
+docker update      =>
+docker version     =>
+docker volume      =>
+docker wait        =>
+
+app attach build builder buildx checkpoint commit compose config container context cp create diff event exec export history image images import info inspect kill load
+login logout logs mainfeast network node pause plugin port ps push pull rename restart rm rmi run save search secret service stack start stats stop swarm system
+
+cat .docker/config.json => Displays config.json of the logged user, where the auth token of the user is mentioned.
+
+
+
+
+
+
+
+
+
+
+
+
+                               
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
