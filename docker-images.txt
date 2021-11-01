@@ -1,0 +1,27 @@
+
+
+********************************************************************************
+                             IMAGES
+********************************************************************************
+
+docker run -p 80:8080 -d --name nginx-server nginx:latest
+
+docker container run --publish 80:80 nginx
+
+docker container run --publish 90:90 --detach --name webhost nginx
+
+docker container run -it alpine sh   => sh means bash was there in the image  
+
+********************************************************************************
+                             TOMCAT
+********************************************************************************
+
+
+
+
+
+
+
+
+
+

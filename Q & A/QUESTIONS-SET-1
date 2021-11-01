@@ -1,0 +1,25 @@
+Q: What is the purpose of creating new networks?
+
+   Containers without user defined networks will use to the default network meaning they will be able to 
+   communicate with each other freely. If you want to more restrictive boundaries you create individual 
+   networks to isolate containers in groups. 
+   
+   Let's say you have 3 containers: a frontend, backend and a database. You don't want all the containers to 
+   communicate freely to increase security. So you add a user defined bridge network called backend and give it 
+   to the backend and database containers since they should be able to communicate. The frontend container only
+   needs to communicate with the backend not the database so you create a frontend network and give to the 
+   frontend and backend containers. So the backend in the scenario is the man in the middle that can communicate
+   with both the frontend and the backend because it shares both networks.
+
+
+                                    DOCKER SWARM -> server clustering system
+_____________________________________________________________________________________________
+Q: How do we automate container life-cycle?
+Q: How can we easily scale out/in/up/down/
+Q: How can we ensure our containers are recreated if they fail?
+Q: How can we replace  containers without downtime deploy (blue/green deploy) ?
+Q: How can we control or track where container get started?
+Q: How can e create cross-node virtual networks ?
+Q: How can we ensure only trusted servers run our containers ?
+Q: How can we stoe secretes, keys , passwords and get them to the right container ( and only that container ) ?
+

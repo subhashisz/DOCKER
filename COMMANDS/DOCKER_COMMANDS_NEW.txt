@@ -3,14 +3,58 @@ Docker GUI
 ********************************************************************************************************************************************************
 sudo usermod -aG docker subhhashis => Adding to user group so that it dont ask for sudo
 
-*************
+******************
 DOCKER GUI:GOOD
-*************
+******************
 Step 1: sudo docker volume create portainer_data
 
 Step 2: sudo docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
 
 Step 3: open browser and hit the url : http://localhost:9000/
+
+
+********************************************************************************************************************************************************
+
+                                                              COMMANDS
+_______________________________________________________________________________________________________________________________________________________
+
+app attach build builder buildx checkpoint commit compose config container context cp create diff event exec export history image images import 
+info inspect kill load login logout logs mainfeast network node pause plugin port ps push pull rename restart rm rmi run save search secret service 
+stack start stats stop swarm system
+_______________________________________________________________________________________________________________________________________________________
+
+cat .docker/config.json => Displays config.json of the logged user, where the auth token of the user is mentioned.
+
+docker login  =>
+docker logout =>
+
+-p -publish  => publishing on port inside docker container :  published outside docker container .[ -p 80:8080 ] or [ -publish 80:8080 ]
+
+-it  =>
+
+-d => runs image in mode
+
+-rm  =>
+
+-ai  =>
+
+inspect  =>
+
+stats  =>
+
+ls =>
+
+ls -al => gives processes running under an image
+
+ps aux  => 
+
+docker top =>
+docker trust =>
+docker unpause =>
+docker update =>
+docker version =>
+docker volume =>
+docker wait =>
 
 ********************************************************************************************************************************************************
 
@@ -120,8 +164,9 @@ docker network create my-app-net
 
 docker container run -d -name new_nginx 
 
-Adding image to a netwok
-***************************
+*****************************
+Adding image to a network
+*****************************
 
 docker container run -d --name new-nginx --network my-app-net  nginx
 
@@ -197,8 +242,9 @@ docker version     =>
 docker volume      =>
 docker wait        =>
 
-app attach build builder buildx checkpoint commit compose config container context cp create diff event exec export history image images import info inspect kill load
-login logout logs mainfeast network node pause plugin port ps push pull rename restart rm rmi run save search secret service stack start stats stop swarm system
+app attach build builder buildx checkpoint commit compose config container context cp create diff event exec export history image images import 
+info inspect kill load login logout logs mainfeast network node pause plugin port ps push pull rename restart rm rmi run save search secret service 
+stack start stats stop swarm system
 
 cat .docker/config.json => Displays config.json of the logged user, where the auth token of the user is mentioned.
 
